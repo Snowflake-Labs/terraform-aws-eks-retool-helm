@@ -25,3 +25,5 @@ One piece that the document doesn't cover which is needed is that after the Open
 5. It would be best to use the same filter [here](https://docs.retool.com/docs/sso-generic-openid-provider#guide-on-how-to-use-this-with-okta-group-claims) in point 7. but instead of `Starts With` we can use `Matches regex` and set the regex to `retool-.*` 
 
 This is based on this okta [doc](https://support.okta.com/help/s/article/Okta-Groups-or-Attribute-Missing-from-Id-Token?language=en_US).
+
+Note: This TF module was created by Prasanth Kommini.
