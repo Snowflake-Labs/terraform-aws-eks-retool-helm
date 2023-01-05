@@ -26,4 +26,4 @@ One piece that the document doesn't cover which is needed is that after the Open
 
 This is based on this okta [doc](https://support.okta.com/help/s/article/Okta-Groups-or-Attribute-Missing-from-Id-Token?language=en_US).
 
-Note: This TF module was created by Prasanth Kommini.
+**Note: This TF module was created by Prasanth Kommini.**
