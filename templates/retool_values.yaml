@@ -1,0 +1,58 @@
+postgresql:
+  enabled: false
+
+config:
+  licenseKey: "${license_key}"
+  useInsecureCookies: false
+  encryptionKey: "${encryption_key}"
+  jwtSecret: "${jwt_secret}"
+
+  postgresql:
+    host: "${db_host}"
+    port: "${db_port}"
+    db: "${db_name}"
+    user: "${db_user}"
+    password: "${db_pass}"
+
+image:
+  repository: "${retool_image_repo}"
+  tag: "${retool_image_version}"
+
+service:
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: /api/checkHealth
+    alb.ingress.kubernetes.io/healthcheck-port: traffic-port
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/tags: "${tags}"
+    alb.ingress.kubernetes.io/listen-ports: '[{ "HTTPS": 443 }]'
+    alb.ingress.kubernetes.io/inbound-cidrs: "${allowed_cidr_blocks_str}"
+    alb.ingress.kubernetes.io/subnets: "${public_subnet_ids_str}"
+    alb.ingress.kubernetes.io/ssl-redirect: "443"
+    alb.ingress.kubernetes.io/certificate-arn: "${subdomain_cert_arn}"
+    external-dns.alpha.kubernetes.io/hostname: "${retool_dns_name}"
+  hostName: "${retool_dns_name}"
+  servicePort: service-port
+  pathType: ImplementationSpecific
+
+env:
+  CUSTOM_OAUTH2_SSO_ROLE_MAPPING: "${okta_to_retool_role_mapping}"
+  CUSTOM_OAUTH2_SSO_ACCESS_TOKEN_LIFESPAN_MINUTES: 720
+  CUSTOM_OAUTH2_SSO_JWT_LAST_NAME_KEY: idToken.family-name
+  CUSTOM_OAUTH2_SSO_JWT_FIRST_NAME_KEY: idToken.given-name
+  CUSTOM_OAUTH2_SSO_JWT_EMAIL_KEY: idToken.email
+  CUSTOM_OAUTH2_SSO_SCOPES: openid email profile offline_access groups
+  CUSTOM_OAUTH2_SSO_JWT_ROLES_KEY: idToken.groups
+  CUSTOM_OAUTH2_SSO_TOKEN_URL: "${okta_url}/oauth2/v1/token"
+  CUSTOM_OAUTH2_SSO_AUTH_URL: "${okta_url}/oauth2/v1/authorize"
+  CUSTOM_OAUTH2_SSO_USERINFO_URL: "${okta_url}/oauth2/v1/userinfo"
+  CUSTOM_OAUTH2_SSO_CLIENT_SECRET: "${retool_okta_app_client_secret}"
+  CUSTOM_OAUTH2_SSO_CLIENT_ID: "${retool_okta_app_client_id}"
+  GITHUB_APP_ID: "${retool_github_app_id}"
+  GITHUB_APP_INSTALLATION_ID: "${retool_github_app_installation_id}"
+  GITHUB_APP_PRIVATE_KEY: "${retool_github_app_b64_encoded_private_key}"
