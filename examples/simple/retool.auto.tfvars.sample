@@ -1,0 +1,19 @@
+license_key     = "RETOOL ENTERPRISE LICENSE"
+encryption_key  = "RANDOM GENERATED STRING"
+jwt_secret      = "RANDOM GENERATED STRING"
+
+rds_cluster_endpoint = "AWS RDS ENDPOINT"
+rds_cluster_port     = "AWS RDS PORT"
+rds_username         = "AWS RDS USERNAME"
+rds_password         = "AWS RDS PASSWORD"
+
+env           = "dev"
+module_prefix = "blue"
+app_name      = "retool"
+
+allowed_cidr_blocks = ["IP CIDR BLOCK"]
+public_subnet_ids   = ["subnet-XXXXX", "subnet-XXXXX"]
+
+subdomain_cert_arn    = "arn:aws:acm:<REGION>:<ACCOUNT>:certificate/<CERT ID>"
+
+hosted_zone_subdomain = "example.com"

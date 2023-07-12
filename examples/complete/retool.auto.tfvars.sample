@@ -1,0 +1,34 @@
+license_key     = "RETOOL ENTERPRISE LICENSE"
+encryption_key  = "RANDOM GENERATED STRING"
+jwt_secret      = "RANDOM GENERATED STRING"
+scim_auth_token = "RETOOL API TOKEN"
+
+rds_cluster_endpoint = "AWS RDS ENDPOINT"
+rds_cluster_port     = "AWS RDS PORT"
+rds_username         = "AWS RDS USERNAME"
+rds_password         = "AWS RDS PASSWORD"
+
+env           = "dev"
+app_name      = "retool"
+
+allowed_cidr_blocks = ["IP CIDR BLOCK"]
+public_subnet_ids   = ["subnet-XXXXX", "subnet-XXXXX"]
+
+subdomain_cert_arn    = "arn:aws:acm:<REGION>:<ACCOUNT>:certificate/<CERT ID>"
+
+hosted_zone_subdomain = "example.com"
+domain_name_suffix    = "mytest"
+
+retool_image_repo    = "https://charts.retool.com"
+retool_image_version = "4.11.5"
+
+okta_enable                   = true
+okta_url                      = "https://example.okta.com"
+okta_to_retool_role_mapping   = "retool-group-1 -> retool-group-1, okta-group-2 -> retool-group-2"
+retool_okta_app_client_id     = "OKTA APP CLIENT ID"
+retool_okta_app_client_secret = "OKTA APP CLIENT SECRET"
+
+github_enable                      = true
+github_app_id                      = "GITHUB APP ID"
+github_app_installation_id         = "GITHUB APP INSTALLATION ID"
+github_app_b64_encoded_private_key = "BASED64 ENCODED RSA PRIVATE KEY"

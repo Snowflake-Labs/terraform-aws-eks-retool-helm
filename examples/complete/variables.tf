@@ -58,20 +58,18 @@ variable "rds_password" {
   type        = string
 }
 
-
-# Optional
 variable "retool_image_repo" {
   description = "Docker Hub container image repo name."
   type        = string
-  default     = "https://charts.retool.com"
 }
 
 variable "retool_image_version" {
   description = "Retool image version."
   type        = string
-  default     = "4.11.5"
 }
 
+
+# Optional
 variable "app_name" {
   description = "Name of the app."
   type        = string
@@ -149,9 +147,4 @@ variable "github_app_b64_encoded_private_key" {
   type        = string
   default     = null
   sensitive   = true
-}
-
-
-locals {
-  retool_dns_name = var.domain_name_suffix != null ? "${var.app_name}-${var.domain_name_suffix}.${var.hosted_zone_subdomain}" : "${var.app_name}.${var.hosted_zone_subdomain}"
 }

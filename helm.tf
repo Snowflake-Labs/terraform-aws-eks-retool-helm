@@ -30,10 +30,13 @@ resource "helm_release" "retool" {
         db_pass = var.rds_password
         db_name = "retool"
 
+        okta_enable                               = var.okta_enable
         okta_url                                  = "${var.okta_url}"
         okta_to_retool_role_mapping               = "${var.okta_to_retool_role_mapping}"
         retool_okta_app_client_id                 = "${var.retool_okta_app_client_id}"
         retool_okta_app_client_secret             = "${var.retool_okta_app_client_secret}"
+
+        github_enable                             = var.github_enable
         retool_github_app_id                      = try(length(var.github_app_id), 0) > 0 ? var.github_app_id : ""
         retool_github_app_installation_id         = try(length(var.github_app_installation_id), 0) > 0 ? var.github_app_installation_id : ""
         retool_github_app_b64_encoded_private_key = try(length(var.github_app_b64_encoded_private_key), 0) > 0 ? var.github_app_b64_encoded_private_key : ""
