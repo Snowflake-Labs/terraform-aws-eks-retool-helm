@@ -1,5 +1,5 @@
-data "aws_eks_cluster_auth" "example_eks_cluster" {
-  name = "EKS CLUSTER ID"
+data "aws_eks_cluster" "example_eks_cluster" {
+  name = "EKS CLUSTER ID/NAME"
 }
 
 provider "helm" {
