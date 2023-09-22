@@ -85,6 +85,32 @@ variable "domain_name_suffix" {
 }
 
 
+# Aembit Proxy
+variable "aembit_tenant_id" {
+  description = "Aembit tenant id."
+  type        = string
+  default     = null
+}
+
+variable "aembit_controller_device_code" {
+  description = "Aembit agent controller device code. Required when aembit_tenant_id variable is not null."
+  type        = string
+  default     = null
+}
+
+variable "aembit_repo_url" {
+  description = "Aembit helm chart repository url. Required when aembit_tenant_id variable is not null."
+  type        = string
+  default     = "https://helm.aembit.io"
+}
+
+variable "aembit_version" {
+  description = "Aembit helm chart version. Required when aembit_tenant_id variable is not null."
+  type        = string
+  default     = null
+}
+
+
 ## Okta Integration
 variable "okta_enable" {
   description = "Enable Okta SSO integration"

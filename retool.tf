@@ -40,7 +40,14 @@ resource "helm_release" "retool" {
         retool_github_app_id                      = try(length(var.github_app_id), 0) > 0 ? var.github_app_id : ""
         retool_github_app_installation_id         = try(length(var.github_app_installation_id), 0) > 0 ? var.github_app_installation_id : ""
         retool_github_app_b64_encoded_private_key = try(length(var.github_app_b64_encoded_private_key), 0) > 0 ? var.github_app_b64_encoded_private_key : ""
+
+        aembit_tenant_id = var.aembit_tenant_id == null ? "" : var.aembit_tenant_id
       }
     )
+  ]
+
+  depends_on = [
+    helm_release.aembit,
+    kubernetes_config_map.aembit_root_cert
   ]
 }
