@@ -40,12 +40,24 @@ ingress:
   servicePort: service-port
   pathType: ImplementationSpecific
 
-env:
-  %{ if scim_auth_token != null ~}
-  SCIM_AUTH_TOKEN: ${scim_auth_token}
-  %{ endif ~}
+podAnnotations:
+  %{ if aembit_tenant_id != "" }
+  aembit.io/agent-inject: enabled
+  %{ endif }
 
-  %{ if okta_enable == true ~}
+extraConfigMapMounts:
+  %{ if aembit_tenant_id != "" }
+  - name: trusted-root-certs
+    mountPath: /tmp/certs
+    configMap: aembit-root-cert
+  %{ endif }
+
+env:
+  %{ if scim_auth_token != null }
+  SCIM_AUTH_TOKEN: ${scim_auth_token}
+  %{ endif }
+
+  %{ if okta_enable == true }
   CUSTOM_OAUTH2_SSO_ROLE_MAPPING: ${okta_to_retool_role_mapping}
   CUSTOM_OAUTH2_SSO_ACCESS_TOKEN_LIFESPAN_MINUTES: 720
   CUSTOM_OAUTH2_SSO_JWT_LAST_NAME_KEY: idToken.family-name
@@ -58,10 +70,14 @@ env:
   CUSTOM_OAUTH2_SSO_USERINFO_URL: ${okta_url}/oauth2/v1/userinfo
   CUSTOM_OAUTH2_SSO_CLIENT_SECRET: ${retool_okta_app_client_secret}
   CUSTOM_OAUTH2_SSO_CLIENT_ID: ${retool_okta_app_client_id}
-  %{ endif ~}
+  %{ endif }
 
-  %{ if github_enable == true ~}
+  %{ if github_enable == true }
   GITHUB_APP_ID: ${retool_github_app_id}
   GITHUB_APP_INSTALLATION_ID: ${retool_github_app_installation_id}
   GITHUB_APP_PRIVATE_KEY: ${retool_github_app_b64_encoded_private_key}
-  %{ endif ~}
+  %{ endif }
+
+  %{ if aembit_tenant_id != "" }
+  NODE_EXTRA_CA_CERTS: /tmp/certs/aembit_agent_proxy.pem
+  %{ endif }
