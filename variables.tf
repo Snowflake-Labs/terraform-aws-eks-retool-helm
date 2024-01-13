@@ -110,6 +110,12 @@ variable "aembit_version" {
   default     = null
 }
 
+variable "aembit_enable_proxy" {
+  description = "Enable routing traffic from Retool to Aembit Proxy"
+  type        = bool
+  default     = true
+}
+
 
 ## Okta Integration
 variable "okta_enable" {
