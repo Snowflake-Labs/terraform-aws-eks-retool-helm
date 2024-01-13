@@ -42,7 +42,9 @@ ingress:
 
 podAnnotations:
   %{ if aembit_tenant_id != "" }
+  %{ if aembit_enable_proxy == true ~}
   aembit.io/agent-inject: enabled
+  %{ endif ~}
   %{ endif }
 
 extraConfigMapMounts:
