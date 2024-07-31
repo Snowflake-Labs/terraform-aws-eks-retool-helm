@@ -92,6 +92,12 @@ variable "aembit_tenant_id" {
   default     = null
 }
 
+variable "aembit_tenant_root_ca_cert" {
+  description = "Aembit tenant root CA certificate in base64 format."
+  type        = string
+  default     = null
+}
+
 variable "aembit_controller_device_code" {
   description = "Aembit agent controller device code. Required when aembit_tenant_id variable is not null."
   type        = string
