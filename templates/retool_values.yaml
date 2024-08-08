@@ -83,3 +83,5 @@ env:
   %{ if aembit_tenant_id != "" }
   NODE_EXTRA_CA_CERTS: /tmp/certs/aembit_agent_proxy.pem
   %{ endif }
+
+replicaCount: ${retool_replica_count}

@@ -84,6 +84,12 @@ variable "domain_name_suffix" {
   default     = null
 }
 
+variable "retool_replica_count" {
+  description = "Retool container replica count."
+  type        = number
+  default     = 1
+}
+
 
 # Aembit Proxy
 variable "aembit_tenant_id" {
@@ -122,6 +128,16 @@ variable "aembit_enable_proxy" {
   default     = true
 }
 
+variable "aembit_proxy_container_limits" {
+  description = "Aembit Agent Proxy container cpu and memory limit."
+  type        = map(string)
+  default     = {
+    cpu_limit      = "500m"
+    cpu_request    = "250m"
+    memory_limit   = "250Mi"
+    memory_request = "100Mi"
+  }
+}
 
 ## Okta Integration
 variable "okta_enable" {
