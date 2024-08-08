@@ -16,6 +16,27 @@ resource "helm_release" "aembit" {
     name  = "agentController.deviceCode"
     value = var.aembit_controller_device_code
   }
+
+  # Aembit Agent Proxy container cpu and memory limits
+  set {
+    name  = "agentProxy.cpuRequest"
+    value = var.aembit_proxy_container_limits["cpu_request"]
+  }
+
+  set {
+    name  = "agentProxy.cpuLimit"
+    value = var.aembit_proxy_container_limits["cpu_limit"]
+  }
+
+  set {
+    name  = "agentProxy.memRequest"
+    value = var.aembit_proxy_container_limits["memory_request"]
+  }
+
+  set {
+    name  = "agentProxy.memLimit"
+    value = var.aembit_proxy_container_limits["memory_limit"]
+  }
 }
 
 resource "kubernetes_config_map" "aembit_root_cert" {

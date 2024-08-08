@@ -23,6 +23,7 @@ resource "helm_release" "retool" {
         retool_dns_name         = local.retool_dns_name
         retool_image_repo       = var.retool_image_repo
         retool_image_version    = var.retool_image_version
+        retool_replica_count    = var.retool_replica_count
 
         db_host = var.rds_cluster_endpoint
         db_port = var.rds_cluster_port
