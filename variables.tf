@@ -139,6 +139,15 @@ variable "aembit_proxy_container_limits" {
   }
 }
 
+variable "aembit_proxy_environment_variables" {
+  description = "Aembit Agent Proxy environment variables."
+  type        = map(string)
+  default     = {
+    AEMBIT_HTTP_IDLE_TIMEOUT_SEC = "3600"
+  }
+}
+
+
 ## Okta Integration
 variable "okta_enable" {
   description = "Enable Okta SSO integration"
