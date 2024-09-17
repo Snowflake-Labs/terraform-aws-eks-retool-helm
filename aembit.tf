@@ -37,6 +37,12 @@ resource "helm_release" "aembit" {
     name  = "agentProxy.memLimit"
     value = var.aembit_proxy_container_limits["memory_limit"]
   }
+
+  # Set Aembit Proxy timeout for idle opened connections
+  set {
+    name  = "agentProxy.env.AEMBIT_HTTP_IDLE_TIMEOUT_SEC"
+    value = var.aembit_proxy_environment_variables["AEMBIT_HTTP_IDLE_TIMEOUT_SEC"]
+  }
 }
 
 resource "kubernetes_config_map" "aembit_root_cert" {
