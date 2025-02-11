@@ -104,8 +104,8 @@ variable "aembit_tenant_root_ca_cert" {
   default     = null
 }
 
-variable "aembit_controller_device_code" {
-  description = "Aembit agent controller device code. Required when aembit_tenant_id variable is not null."
+variable "aembit_controller_id" {
+  description = "Aembit agent controller id. Required when aembit_tenant_id variable is not null."
   type        = string
   default     = null
 }

@@ -13,8 +13,8 @@ resource "helm_release" "aembit" {
   }
 
   set {
-    name  = "agentController.deviceCode"
-    value = var.aembit_controller_device_code
+    name  = "agentController.id"
+    value = var.aembit_controller_id
   }
 
   # Aembit Agent Proxy container cpu and memory limits
